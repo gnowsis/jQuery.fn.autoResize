@@ -176,6 +176,10 @@
 			}
 
 			// TEXTAREA
+
+			// FIX for Chrome 13 compatibility -- for some reason clone's width is 0, so it vertically expands on every character
+			clone.width(el.width());
+
 			
 			clone.height(0).val(value).scrollTop(10000);
 			
