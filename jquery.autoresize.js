@@ -183,7 +183,13 @@
 			
 			clone.height(0).val(value).scrollTop(10000);
 			
-			var scrollTop = clone[0].scrollTop + config.extraSpace;
+			// FIX for Safari -- when textfield is empty it's simply too big :-)
+			if(value == '')
+				clone.scrollTop(config.minHeight);
+			
+			// include height in the scroll value -- it should be 0 but sometimes (e.g., in Firefox) its more than that
+			var scrollTop = clone[0].scrollTop + clone.height() + config.extraSpace;
+
 				
 			// Don't do anything if scrollTop hasen't changed:
 			if (this.previousScrollTop === scrollTop) {
